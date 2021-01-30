@@ -65,13 +65,14 @@ const querystring = require('querystring');
             },
         };
 
-        var params = fse.readJSONSync('params.json');
+        var paramsFilename = '1-docket-crawler-params.json';
+        var params = fse.readJSONSync(paramsFilename);
 
         console.log('Starting with ' + params.caseYear.toString() + '-' + params.caseNumber.toString().padStart(4, '0') + '\n');
 
         // Iterate through cases
         do {
-            fse.writeJSONSync('params.json', params);
+            fse.writeJSONSync(paramsFilename, params);
 
             bodyObjForRequestingDocket.paramCaseYear = params.caseYear.toString();
             bodyObjForRequestingDocket.paramCaseNumber = params.caseNumber.toString().padStart(4, '0');
