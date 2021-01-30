@@ -1,7 +1,7 @@
 {
   "name": "oh-sup-ct-clerk-docket-crawler",
   "version": "0.0.1",
-  "description": "Ohio Supreme Court Clerk Docket Crawler",
+  "description": "Ohio Supreme Court Clerk Docket Crawler; downloads and formats docket data for SQL insertion",
   "main": "docketcrawler.js",
   "scripts": {
     "test": "docketcrawler.js"
@@ -16,8 +16,8 @@
     "Docket",
     "Crawler"
   ],
-  "author": "Ohio Supreme Court Reasons Therefor",
-  "license": "CC0 1.0 Universal",
+  "author": "Ohio Supreme Court Reasons Therefor Group",
+  "license": "CC0-1.0",
   "bugs": {
     "url": "https://github.com/Ohio-Supreme-Court-Reasons-Therefor/oh-sup-ct-clerk-docket-crawler/issues"
   },
@@ -25,6 +25,8 @@
   "dependencies": {
     "fetch-cookie": "^0.11.0",
     "fs-extra": "^9.1.0",
-    "node-fetch": "^2.6.1"
+    "generate-schema": "^2.6.0",
+    "node-fetch": "^2.6.1",
+    "node-jq": "^1.12.0"
   }
 }

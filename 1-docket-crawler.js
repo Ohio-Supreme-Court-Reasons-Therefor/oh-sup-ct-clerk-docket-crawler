@@ -65,13 +65,13 @@ const querystring = require('querystring');
             },
         };
 
-        var params = fse.readJSONSync('tmp/params.json');
+        var params = fse.readJSONSync('params.json');
 
         console.log('Starting with ' + params.caseYear.toString() + '-' + params.caseNumber.toString().padStart(4, '0') + '\n');
 
         // Iterate through cases
         do {
-            fse.writeJSONSync('tmp/params.json', params);
+            fse.writeJSONSync('params.json', params);
 
             bodyObjForRequestingDocket.paramCaseYear = params.caseYear.toString();
             bodyObjForRequestingDocket.paramCaseNumber = params.caseNumber.toString().padStart(4, '0');
@@ -128,7 +128,7 @@ const querystring = require('querystring');
             } else {
                 var dataFileName = 'tmp/data' + params.caseYear + '.txt'; 
                 if (params.sequentialBadResponses.length > 0) {
-                    fse.appendFileSync(dataFileName,params.sequentialBadResponses.join());
+                    fse.appendFileSync(dataFileName,params.sequentialBadResponses.join(''));
                     params.sequentialBadResponses = [];
                 }
                 fse.appendFileSync(dataFileName, ',' + respText + '\n');
