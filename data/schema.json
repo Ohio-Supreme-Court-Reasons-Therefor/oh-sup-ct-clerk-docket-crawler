@@ -29,7 +29,10 @@
             "type": "string"
           },
           "CaseType": {
-            "type": "string"
+            "type": [
+              "string",
+              "null"
+            ]
           },
           "PriorJurisdiction": {
             "type": "null"

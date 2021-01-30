@@ -13,7 +13,7 @@ The Crawler is configured to crawl the Ohio Supreme Court Clerk's [online docket
 ## Execution
 
 * Verify or revise the contents of the `1-docket-crawler-params.json` file.
-* Open a terminal, change to the local repository directory, and execute `node 1-docket-crawler.js`.
+* Open a terminal, change to the local repository directory, and execute `node 1-docket-crawler.js`.  Downloading 1985 through 2021 has taken between 12 to 13 hours, and the results are about 280 MB in size.
 
 ## Processing
 
