@@ -84,8 +84,14 @@ const querystring = require('querystring');
 
             fetchInit.body = querystring.stringify(bodyObjForRequestingDocket);
 
-            var response = await fetch('https://www.supremecourt.ohio.gov/Clerk/ecms/Ajax.ashx', fetchInit);
-            var respText = await response.text();
+            var respText;
+            try {
+                var response = await fetch('https://www.supremecourt.ohio.gov/Clerk/ecms/Ajax.ashx', fetchInit);
+                respText = await response.text();
+            }
+            catch(e) {
+                respText = e.toString();
+            }
 
             process.stdout.clearLine();
             process.stdout.cursorTo(0);
@@ -120,7 +126,7 @@ const querystring = require('querystring');
                     params.caseNumber = 0;
                 }
             } else {
-                var dataFileName = 'logs/data' + params.caseYear + '.txt'; 
+                var dataFileName = 'tmp/data' + params.caseYear + '.txt'; 
                 if (params.sequentialBadResponses.length > 0) {
                     fse.appendFileSync(dataFileName,params.sequentialBadResponses.join());
                     params.sequentialBadResponses = [];
