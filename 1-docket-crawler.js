@@ -65,7 +65,7 @@ const querystring = require('querystring');
             },
         };
 
-        var paramsFilename = '1-docket-crawler-params.json';
+        var paramsFilename = '1-docket-crawler.json';
         var params = fse.readJSONSync(paramsFilename);
 
         console.log('Starting with ' + params.caseYear.toString() + '-' + params.caseNumber.toString().padStart(4, '0') + '\n');

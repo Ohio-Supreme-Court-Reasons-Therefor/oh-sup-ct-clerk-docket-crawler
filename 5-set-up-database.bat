@@ -1,0 +1,1 @@
+sqlite3 data\oh_sp_ct_dockets.sqlite ".read 5-set-up-database.sql"

@@ -8,17 +8,22 @@ The Crawler is configured to crawl the Ohio Supreme Court Clerk's [online docket
 
 * Install Node.js
 * Fork and/or clone this repository locally.
-* Open a terminal, change to the local repository directory, and execute `npm ci` to clean and install required node modules.
+* Open a terminal, change to this repository's local directory, and execute `npm ci` to clean and install required node modules.
 
 ## Extraction
 
 * Verify or revise the contents of the `1-docket-crawler-params.json` file.
-* Open a terminal, change to the local repository directory, and execute `node 1-docket-crawler.js`.  Downloading 1985 through 2021 has taken between 12 to 13 hours, and the results are about 280 MB in size.
+* Open a terminal, change to this repository's local directory, and execute `node 1-docket-crawler.js`.  Downloading 1985 through 2021 has taken between 12 to 13 hours, and the results are about 280 MB in size.
 
 ## Transformation
 
-* Execute the following command if you have not previously done so:  `npm install generate-schema -g`
-* Open a terminal, change to the `tmp` folder, then execute the following commands.  *(Note: The .bat files are meant to be executed on a Windows computer. If you do not have a Windows computer, then just review the .bat files and execute their pertinent commands in a manner appropriate for your computer.)*
+* If you have not previously done so, execute the following command:  `npm install generate-schema -g`
+* Open a terminal, change to this repository's local directory, then execute the following commands.  *(Note: The .bat files are meant to be executed on a Windows computer. If you do not have a Windows computer, then just review the .bat files and execute their pertinent commands in a manner appropriate for your computer.)*
   * `node 2-check-data-files-json.js`
   * `3-concat-files.bat`
   * `4-export-to-csv.bat`
+* If you have not previously done so, install SQLite and ensure `sqlite` is in your path.
+* Open a terminal, change to this repository's local directory, then execute the following commands:
+  * `5-set-up-database.bat`
+  * `6-import-to-database.bat`
+* Analyze the data in the database as desired.  See the file `7-analyze.sql` for examples.
