@@ -3,3 +3,4 @@ all.txt
 dispositive_decision_items.json
 *.sqlite
 *.sqlite-journal
+*.png
