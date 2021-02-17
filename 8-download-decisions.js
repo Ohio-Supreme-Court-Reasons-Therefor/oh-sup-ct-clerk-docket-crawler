@@ -11,6 +11,8 @@ const streamPipeline = util.promisify(require('stream').pipeline);
 
         var decisionNumber = parseInt(fse.readFileSync('8-download-decisions.json').toString().trim());
         var decisionNumberStart = decisionNumber;
+        // Note:  The "decisions" that this program downloads are the decisions listed in the "dispositive_decision_items.json" file
+        //        which is itself a product of the 4-export-to-csv.bat program.  (The file is the only non-csv export file.)
         var decisions = fse.readJSONSync('data/dispositive_decision_items.json');
 
         console.log('Starting with decision number ' + decisionNumber + '.\n');
