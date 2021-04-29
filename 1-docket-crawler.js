@@ -136,7 +136,7 @@ const querystring = require('querystring');
             }
 
             params.caseNumber++;
-
+return;
         } while (true);
 
     } catch (error) {
