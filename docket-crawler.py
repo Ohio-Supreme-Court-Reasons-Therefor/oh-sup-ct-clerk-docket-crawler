@@ -1,8 +1,7 @@
-# oh-sup-ct-clerk-docket-crawler
+# oh-sup-ct-case-data
 
 import sys, datetime, urllib.request, json
 import sqlite3
-import numpy as np
 import pandas as pd
 
 # use command line parameters to determine with which year and case number this execution instance should begin and end
@@ -39,7 +38,6 @@ req.add_header('x-requested-with', 'XMLHttpRequest')
 req.add_header('user-agent','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36')
 
 
-
 # Get the last case number for each year from the first year through the last year...
 
 data_dict_for_requesting_final_cases_for_year = {
@@ -56,11 +54,14 @@ data_dict_for_requesting_final_cases_for_year = {
 }
 
 
-
 # the following dictionary data was retrieved after setting the first_year_to_process variable to 1985.
 # because the numbers for past years shouldn't change, we don't really need to do anything more than get the years subsequent to those in this dictionary 
-last_case_number_by_year = {1985: 2029, 1986: 2101, 1987: 2217, 1988: 2215, 1989: 2224, 1990: 2557, 1991: 2576, 1992: 2647, 1993: 2639, 1994: 2770, 1995: 2679, 1996: 2889, 1997: 2731, 1998: 2728, 1999: 2327, 2000: 2355, 2001: 2284, 2002: 2249, 2003: 2237, 2004: 2178, 2005: 2444, 2006: 2407, 2007: 2459, 2008: 2506, 2009: 2363, 2010: 2293, 2011: 2207, 2012: 2188, 2013: 2055, 2014: 2257, 2015: 2113, 2016: 1914, 2017: 1828, 2018: 1859, 2019: 1819, 2020: 1593}
-
+last_case_number_by_year = {
+    1985: 2029, 1986: 2101, 1987: 2217, 1988: 2215, 1989: 2224, 1990: 2557, 1991: 2576, 1992: 2647, 1993: 2639, 1994: 2770, 
+    1995: 2679, 1996: 2889, 1997: 2731, 1998: 2728, 1999: 2327, 2000: 2355, 2001: 2284, 2002: 2249, 2003: 2237, 2004: 2178, 
+    2005: 2444, 2006: 2407, 2007: 2459, 2008: 2506, 2009: 2363, 2010: 2293, 2011: 2207, 2012: 2188, 2013: 2055, 2014: 2257, 
+    2015: 2113, 2016: 1914, 2017: 1828, 2018: 1859, 2019: 1819, 2020: 1593
+}
 
 current_year = datetime.date.today().year
 
@@ -122,7 +123,7 @@ for year in range(first_year_to_process, last_year_to_process+1):
 
     for case_number in range(first_case_number_to_process, last_case_number+1):
         case_number_id = str(year) + "-" + str(case_number).zfill(4)
-        print("Retrieving case " + case_number_id + "; command to start from here: python docket-crawler.py " + str(first_year_to_process) + " " + str(case_number) + " " + str(last_year_to_process))
+        print("To restart: python docket-crawler.py " + str(year) + " " + str(case_number) + " " + str(last_year_to_process))
 
         data_dict_for_requesting_docket["paramCaseNumber"] = str(case_number).zfill(4)
         data_dict_for_requesting_docket["paramCaseYear"] = str(year)
@@ -153,16 +154,16 @@ for year in range(first_year_to_process, last_year_to_process+1):
 
         #note:  the sqlite3 table has a ON CONFLICT clause that forces an update when this code attempts to insert an id that is already in the table
         #
-        # CREATE TABLE raw_data_from_website (
+        # CREATE TABLE data_from_clerk (
         # 	id TEXT,
         # 	last_retrieved TEXT,
         # 	raw_data TEXT,
-        # 	CONSTRAINT raw_data_from_website_PK PRIMARY KEY (id) ON CONFLICT REPLACE
+        # 	CONSTRAINT data_from_clerk_PK PRIMARY KEY (id) ON CONFLICT REPLACE
         # );
         #
         # An alternative to that would be the following:  https://docs.sqlalchemy.org/en/14/dialects/sqlite.html#insert-on-conflict-upsert
 
-        df.to_sql("raw_data_from_website", conn, if_exists='append', index=False)
+        df.to_sql("data_from_clerk  ", conn, if_exists='append', index=False)
 
 conn.close()
 
