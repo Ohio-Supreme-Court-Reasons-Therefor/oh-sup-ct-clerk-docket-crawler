@@ -38,7 +38,7 @@ conn.close()
 # 	report_url TEXT,
 # 	document BLOB,
 # 	document_text TEXT,
-# 	CONSTRAINT documents_from_clerk_PK PRIMARY KEY (report_url)
+# 	CONSTRAINT documents_from_clerk_PK PRIMARY KEY (report_url) ON CONFLICT REPLACE
 # );
 
 # INSERT INTO report_data_via_clerk (report_url) 
