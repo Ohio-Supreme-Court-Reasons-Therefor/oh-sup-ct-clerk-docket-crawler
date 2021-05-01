@@ -1,6 +1,6 @@
-# oh-sup-ct-clerk-docket-crawler
+# oh-sup-ct-data-getter
 
-The Ohio Supreme Court Clerk Docket Crawler is an initiative of [Ohio Supreme Court "Reasons Therefor" Research](https://ohio-supreme-court-reasons-therefor.github.io/?q=%22together%20with%20the%20reasons%20therefor%22).  The crawler collects data that facilitates research into the history and observance of the mandate in the Ohio Constitution's Article IV, Section 2(C): "The decisions in all cases in the Supreme Court shall be reported together with the reasons therefor."
+The Ohio Supreme Court Clerk Docket Getter is an initiative of [Ohio Supreme Court "Reasons Therefor" Research](https://ohio-supreme-court-reasons-therefor.github.io/?q=%22together%20with%20the%20reasons%20therefor%22).  The crawler collects data that facilitates research into the history and observance of the mandate in the Ohio Constitution's Article IV, Section 2(C): "The decisions in all cases in the Supreme Court shall be reported together with the reasons therefor."
 
 The Crawler is configured to crawl the Ohio Supreme Court Clerk's [online docket database](https://www.supremecourt.ohio.gov/Clerk/ecms/#/search) and save its data locally.  *(At a technical level, what the core code does is (1) retrieve JSON formatted case data through HTTPS and an ASP.NET interface that is present within the Clerk's set of pages and (2) save then import that data into a SQLite database.)*
 
