@@ -1,10 +1,10 @@
-# oh-sup-ct-case-data
+# clerk docket crawler
 
 import sys, datetime, urllib.request, json
 import sqlite3
 import pandas as pd
 
-# use command line parameters to determine with which year and case number this execution instance should begin and end
+# use command line parameters to determine the  year and case number with which this execution instance should begin and end
 
 first_year_to_process = int(sys.argv[1])
 print("first year to process = " + str(first_year_to_process))
@@ -16,7 +16,7 @@ last_year_to_process = int(sys.argv[3])
 print("last year to process = " + str(last_year_to_process))
 
 # connect to the database
-conn = sqlite3.connect("./data/oh_sp_ct_dockets.sqlite")
+conn = sqlite3.connect("./data/oh_sp_ct_data.sqlite")
 
 # set up the very basic info for the HTTPS requests we will make below
 base_docket_url = "https://www.supremecourt.ohio.gov/Clerk/ecms/Ajax.ashx"
@@ -154,16 +154,16 @@ for year in range(first_year_to_process, last_year_to_process+1):
 
         #note:  the sqlite3 table has a ON CONFLICT clause that forces an update when this code attempts to insert an id that is already in the table
         #
-        # CREATE TABLE data_from_clerk (
+        # CREATE TABLE clerk_docket_data (
         # 	id TEXT,
         # 	last_retrieved TEXT,
         # 	raw_data TEXT,
-        # 	CONSTRAINT data_from_clerk_PK PRIMARY KEY (id) ON CONFLICT REPLACE
+        # 	CONSTRAINT clerk_docket_data_PK PRIMARY KEY (id) ON CONFLICT REPLACE
         # );
         #
         # An alternative to that would be the following:  https://docs.sqlalchemy.org/en/14/dialects/sqlite.html#insert-on-conflict-upsert
 
-        df.to_sql("data_from_clerk  ", conn, if_exists='append', index=False)
+        df.to_sql("clerk_docket_data", conn, if_exists='append', index=False)
 
 conn.close()
 

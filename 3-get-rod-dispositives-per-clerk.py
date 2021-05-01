@@ -14,10 +14,10 @@ print("year to process = " + year)
 
 conn = sqlite3.connect("./data/oh_sp_ct_data.sqlite")
 
-df = pd.read_sql("SELECT report_url FROM report_data_via_clerk WHERE report_url LIKE '%/"+year+"-ohio%' AND document IS NULL",conn)
+df = pd.read_sql("SELECT report_url FROM rod_dispositives_per_clerk WHERE report_url LIKE '%/"+year+"-ohio%' AND document_text IS NULL",conn)
 df.sort_values("report_url",inplace=True)
 
-for index in df.index:
+for index in df.index
     report_url = df.loc[index,'report_url']
     print(report_url)
 
@@ -71,10 +71,9 @@ for index in df.index:
     #print(page_text)
     df2 = pd.DataFrame([{
         "report_url":report_url,
-        "document": resp_content,
         "document_text": page_text
     }])
 
-    df2.to_sql("report_data_via_clerk", conn, if_exists='append', index=False)
+    df2.to_sql("rod_dispositives_per_clerk", conn, if_exists='append', index=False)
 
 conn.close()

@@ -31,17 +31,18 @@ for index in df.index:
 
 df.to_sql("data_from_clerk", conn, if_exists='append', index=False)
 
+# select json_extract(raw_data,'$.CaseInfo.Status') from clerk_docket_data
 
 conn.close()
 
-# CREATE TABLE "report_data_via_clerk" (
+# CREATE TABLE "rod_dispositives_per_clerk" (
 # 	report_url TEXT,
 # 	document BLOB,
 # 	document_text TEXT,
 # 	CONSTRAINT documents_from_clerk_PK PRIMARY KEY (report_url) ON CONFLICT REPLACE
 # );
 
-# INSERT INTO report_data_via_clerk (report_url) 
+# INSERT INTO rod_dispositives_per_clerk (report_url) 
 # SELECT distinct dispositive_docket_item_report_url FROM data_from_clerk 
 # WHERE dispositive_docket_item_report_url IS NOT NULL 
 # AND dispositive_docket_item_report_url NOT IN (SELECT report_url FROM report_data_via_clerk)
