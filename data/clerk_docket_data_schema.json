@@ -1,14 +1,10 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "array",
-  "items": {
-    "type": "object",
-    "properties": {
+  "items": {"type": "object","properties": {
       "UserID": {"type": "number"},
       "SubscriptionID": {"type": "number"},
-      "CaseInfo": {
-        "type": "object",
-        "properties": {
+      "CaseInfo": {"type": "object","properties": {
           "ID": {"type": "number"},
           "CaseNumber": {"type": "string"},
           "Caption": {"type": "string"},
@@ -18,17 +14,11 @@
           "PriorJurisdiction": {"type": "null"}
         }
       },
-      "CaseJurisdiction": {
-        "type": "object",
-        "properties": {
+      "CaseJurisdiction": {"type": "object","properties": {
           "Name": {"type": "string"},
           "County": {"type": "string"},
           "PriorDecisionDate": {"type": ["string","null"]},
-          "PriorCaseNumbers": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
+          "PriorCaseNumbers": {"type": "array","items": {"type": "object","properties": {
                 "Number": {"type": "string"}
               },
               "required": ["Number"]
@@ -36,11 +26,7 @@
           }
         }
       },
-      "DocketItems": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
+      "DocketItems": {"type": "array","items": {"type": "object","properties": {
             "ID": {"type": "number"},
             "Description": {"type": "string"},
             "Code": {"type": "string"},
@@ -52,23 +38,13 @@
           "required": ["ID","Description","Code","Type","DateFiled","DocumentName","FilingParties"]
         }
       },
-      "DecisionItems": {
-        "type": "array",
-        "items": {}
+      "DecisionItems": {"type": "array","items": {}
       },
-      "Parties": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
+      "Parties": {"type": "array","items": {"type": "object","properties": {
             "Name": {"type": "string"},
             "ProSe": {"type": "boolean"},
             "Type": {"type": "string"},
-            "Attorneys": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "properties": {
+            "Attorneys": {"type": "array","items": {"type": "object","properties": {
                   "Name": {"type": "string"},
                   "ARNumber": {"type": "string"},
                   "CounselOfRecord": {"type": "boolean"}
